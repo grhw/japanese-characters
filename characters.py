@@ -1,3 +1,5 @@
+import json
+
 str_hiragana_table = """- わ ら や ま は な た さ か あ
 - ゐ り - み ひ に - - き い
 - - る ゆ む - ぬ - す く う
@@ -48,3 +50,10 @@ char_to_romanji = katakana.copy()
 
 for i in katakana.keys():
     hiragana[i] = katakana[i]
+
+with open("chars.json","w+",encoding="eucjp") as f:
+    f.write(json.dumps({
+        "katakana": katakana,
+        "hiragana": hiragana,
+        "all": char_to_romanji,
+    }))
