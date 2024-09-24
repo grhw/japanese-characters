@@ -102,7 +102,7 @@ const default_stats = {
         "value": 0,
     }
 }
-var stats = default_stats
+var stats = JSON.parse(JSON.stringify(default_stats))
 function random_unique(ar,k,dont_include=[]) {
     var res = []
     while (res.length < Math.min(k,ar.length-1)) {
@@ -126,7 +126,7 @@ function end_game() {
         `${stats["partial_correct"]["name"]}: ${stats["partial_correct"]["value"]}`,
     ])
     title.innerHTML = "Congrats! Accuracy:"
-    stats = default_stats
+    stats = JSON.parse(JSON.stringify(default_stats))
     used = []
 }
 
@@ -135,7 +135,7 @@ function random_question() {
     if (used.length >= possibilities.length) {
         return end_game()
     }
-    const character = random_unique(possibilities,1,used)
+    const character = random_unique(possibilities,1,used)[0]
     const answers = random_unique(Object.values(characters["all"]),settings["num-choices"]["value"],characters["all"][character])
     answers[Math.floor(Math.random()*answers.length)] = characters["all"][character]
     
@@ -144,6 +144,7 @@ function random_question() {
     }
     stats["total"]["value"] += 1
     display_question(character,answers)
+    console.log(used)
 }
 
 random_question()
