@@ -154,6 +154,7 @@ document.querySelector(".answers").addEventListener("click",(el)=>{
                 currently_full_correct = true
                 random_question()
             }, 1000);
+            playing = true
         } else {
             stats["wrong_answers"]["value"] += 1
             el.target.classList.add("wrong")
