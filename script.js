@@ -95,6 +95,11 @@ const default_stats = {
         "name": "partial correct",
         "desc": "correct answers that you had to use multiple attempts on",
         "value": 0
+    },
+    "total": {
+        "name": "total",
+        "desc": "total",
+        "value": 0,
     }
 }
 var stats = default_stats
@@ -115,7 +120,7 @@ var currently_full_correct = true
 
 function end_game() {
     playing = false
-    display_question(`${Math.floor((stats["full_correct"]["value"]/used.length)*100)}%`,[
+    display_question(`${Math.floor((stats["full_correct"]["value"]/stats["total"]["value"])*100)}%`,[
         `${stats["wrong_answers"]["name"]}: ${stats["wrong_answers"]["value"]}`,
         `${stats["full_correct"]["name"]}: ${stats["full_correct"]["value"]}`,
         `${stats["partial_correct"]["name"]}: ${stats["partial_correct"]["value"]}`,
@@ -137,6 +142,7 @@ function random_question() {
     if (!settings["no-bag"]["value"]) {
         used.push(character)
     }
+    stats["total"]["value"] += 1
     display_question(character,answers)
 }
 
