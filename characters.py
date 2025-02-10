@@ -51,6 +51,9 @@ char_to_romanji = katakana.copy()
 for i in katakana.keys():
     hiragana[i] = katakana[i]
 
+for i in hiragana.keys():
+    char_to_romanji[i] = hiragana[i]
+
 with open("chars.json","w+",encoding="eucjp") as f:
     f.write(json.dumps({
         "katakana": katakana,

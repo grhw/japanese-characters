@@ -23,20 +23,15 @@ def run(usable_chars):
             char = unused_chars.pop()
         else:
             char = random.choice(usable_chars)
-        shuffled = list(all_chars.values())
-        random.shuffle(shuffled)
-        choices = shuffled[:4]
-        choices[random.randint(0,3)] = all_chars[char]
         print("\n")
         print_percentage()
         print("\n")
         print(char)
-        print(" | ".join(choices))
-        choice = input("[ ]\033[2D")
+        choice = input("[  ]\033[3D")
         print("\033[2J")
         if choice == "l":
             return wrong
-        if choice.isdigit() and choices[(int(choice)-1)%len(all_chars)] == all_chars[char]:
+        if choice == all_chars[char]:
             print("\033[1F[/]")
             correct += 1
         else:

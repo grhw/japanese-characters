@@ -1,5 +1,5 @@
 from characters import char_to_romanji as all_chars
-import player
+import player_better as player
 
 wrong = []
 while True:
